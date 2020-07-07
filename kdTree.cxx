@@ -61,14 +61,14 @@ kdTree::BuildkdTree(std::vector<std::vector<double>>&  kdData,
             median = kdData[middlePoint][currentDimension];
         }
 		
-		for (auto& data : kdData) {
-			if (data[currentDimension] <= median) {
-				P1.push_back(data);
-			}
-			else {
-				P2.push_back(data);
-			}
+	for (auto& data : kdData) {
+		if (data[currentDimension] <= median) {
+			P1.push_back(data);
 		}
+		else {
+			P2.push_back(data);
+		}
+	}
 		
         Node* left = BuildkdTree(P1, depth + 1);//bottom
         Node* right = BuildkdTree(P2, depth + 1);//top
