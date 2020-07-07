@@ -1,4 +1,7 @@
 #include "kdTree.h"
+#include <iostream>
+#include <cmath>
+#include <cfloat>
 
 std::vector<double> getNNP(kdTree&, std::vector<double>&);
 void searchNNP(Node* treeNode, std::vector<double>& testPoint, std::vector<double>& nearestNode, double& nearestDistance );
@@ -21,7 +24,7 @@ searchNNP(  Node*                   treeNode,
         if (left == NULL && right == NULL) {// leaf node
             delx = std::abs((treeNode->point)[0] - testPoint[0]);
             dely = std::abs((treeNode->point)[1] - testPoint[1]);
-            distance = std::sqrt(std::powf(delx,2)+std::powf(dely,2));
+            distance = std::sqrt(powf(delx,2)+powf(dely,2));
             if (distance < nearestDistance) {
                 nearestDistance = distance;
                 nearestNode = treeNode->point;
