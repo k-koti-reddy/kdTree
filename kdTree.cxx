@@ -55,28 +55,21 @@ kdTree::BuildkdTree(std::vector<std::vector<double>>&  kdData,
         if (num_of_points % 2 == 0) {//if number of data points are even
             auto middlePoint = num_of_points / 2;
             median = (kdData[middlePoint][currentDimension] + kdData[middlePoint - 1][currentDimension]) / 2.0;
-            for (auto& data : kdData) {
-                if (data[currentDimension] <= median) {
-                    P1.push_back(data);
-                }
-                else {
-                    P2.push_back(data);
-                }
-            }
         }
         else {//if number of data points are odd
             auto middlePoint = (num_of_points - 1) / 2;
             median = kdData[middlePoint][currentDimension];
-            for (auto& data : kdData) {
-                if (data[currentDimension] <= median) {
-                    P1.push_back(data);
-                }
-                else {
-                    P2.push_back(data);
-                }
-            }
         }
-
+		
+		for (auto& data : kdData) {
+			if (data[currentDimension] <= median) {
+				P1.push_back(data);
+			}
+			else {
+				P2.push_back(data);
+			}
+		}
+		
         Node* left = BuildkdTree(P1, depth + 1);//bottom
         Node* right = BuildkdTree(P2, depth + 1);//top
         Node* parent = new Node(median);
